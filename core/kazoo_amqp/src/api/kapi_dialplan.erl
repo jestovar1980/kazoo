@@ -1133,34 +1133,34 @@ playstop_definition() ->
 
 -spec playseek_definition() -> kapi_definition:api().
 playseek_definition() ->
-EventName = <<"command">>,
-Category = <<"call">>,
-Setters = [{fun kapi_definition:set_name/2, EventName}
-          ,{fun kapi_definition:set_friendly_name/2, <<"PlaySeek">>}
-          ,{fun kapi_definition:set_description/2, <<"Change position in playing media">>}
-          ,{fun kapi_definition:set_category/2, Category}
-          ,{fun kapi_definition:set_build_fun/2, fun playseek/1}
-          ,{fun kapi_definition:set_validate_fun/2, fun playseek_v/1}
-          ,{fun kapi_definition:set_publish_fun/2, fun publish_command/2}
-          ,{fun kapi_definition:set_required_headers/2, [<<"Application-Name">>
-                                                        ,<<"Call-ID">>
-                                                        ,<<"Direction">>
-                                                        ,<<"Duration">>
-                                                        ]}
-          ,{fun kapi_definition:set_optional_headers/2, [<<"Insert-At">>
-                                                        ]}
-          ,{fun kapi_definition:set_values/2
-           ,[{<<"Application-Name">>, <<"playseek">>}
-            ,{<<"Insert-At">>, <<"now">>}
-             | kapi_definition:event_type_headers(Category, EventName)
-            ]
-           }
-          ,{fun kapi_definition:set_types/2
-           ,[{<<"Duration">>, fun is_integer/1}
-            ]
-           }
-          ],
-kapi_definition:setters(Setters).
+    EventName = <<"command">>,
+    Category = <<"call">>,
+    Setters = [{fun kapi_definition:set_name/2, EventName}
+              ,{fun kapi_definition:set_friendly_name/2, <<"PlaySeek">>}
+              ,{fun kapi_definition:set_description/2, <<"Change position in playing media">>}
+              ,{fun kapi_definition:set_category/2, Category}
+              ,{fun kapi_definition:set_build_fun/2, fun playseek/1}
+              ,{fun kapi_definition:set_validate_fun/2, fun playseek_v/1}
+              ,{fun kapi_definition:set_publish_fun/2, fun publish_command/2}
+              ,{fun kapi_definition:set_required_headers/2, [<<"Application-Name">>
+                                                            ,<<"Call-ID">>
+                                                            ,<<"Direction">>
+                                                            ,<<"Duration">>
+                                                            ]}
+              ,{fun kapi_definition:set_optional_headers/2, [<<"Insert-At">>
+                                                            ]}
+              ,{fun kapi_definition:set_values/2
+               ,[{<<"Application-Name">>, <<"playseek">>}
+                ,{<<"Insert-At">>, <<"now">>}
+                 | kapi_definition:event_type_headers(Category, EventName)
+                ]
+               }
+              ,{fun kapi_definition:set_types/2
+               ,[{<<"Duration">>, fun is_integer/1}
+                ]
+               }
+              ],
+    kapi_definition:setters(Setters).
 
 -spec tts_definition() -> kapi_definition:api().
 tts_definition() ->
@@ -2374,7 +2374,7 @@ error_definition() ->
                                                             ]}
               ,{fun kapi_definition:set_values/2
                ,[{<<"Event-Name">>, EventName}
-                     | ?ERROR_RESP_VALUES
+                 | ?ERROR_RESP_VALUES
                 ]
                }
               ,{fun kapi_definition:set_types/2, ?ERROR_RESP_TYPES}
