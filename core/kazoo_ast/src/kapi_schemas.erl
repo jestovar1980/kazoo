@@ -268,7 +268,7 @@ properties_to_schema(RequiredHs, OptionalHs, #acc{}=Acc) ->
     {DetectedRequired, OptHs} = just_required(RequiredHs),
     SchemaRequired = kz_json:get_list_value(<<"required">>, Schema, []),
 
-    Required = lists:merge(lists:sort(SchemaRequired), lists:sort(DetectedRequired)),
+    Required = lists:merge(lists:usort(SchemaRequired), lists:usort(DetectedRequired)),
 
     Optional = OptHs ++ OptionalHs,
 
@@ -286,9 +286,9 @@ set_required(Schema, Required) ->
 just_required(Required) ->
     lists:foldl(fun flatten_required/2, {[], []}, Required).
 
-flatten_required(<<_/binary>>=R, {Req, Opt}) ->
+flatten_required(<<R/binary>>, {Req, Opt}) ->
     {[R | Req], Opt};
-flatten_required([R, <<_/binary>>=Optional], {Req, Opt}) ->
+flatten_required([R, <<Optional/binary>>], {Req, Opt}) ->
     {[R | Req], [Optional | Opt]};
 flatten_required([R, Optional], {Req, Opt}) ->
     {[R | Req], Optional ++ Opt}.
@@ -443,7 +443,7 @@ add_validator({Field, Value}, Schema) ->
 property_path(Fields) ->
     lists:foldr(fun(Field, Acc) -> [<<"properties">>, Field | Acc] end, [], Fields).
 
-validator_properties(<<_/binary>>=Value) ->
+validator_properties(<<Value/binary>>) ->
     kz_json:from_list([{<<"type">>, <<"string">>}
                       ,{<<"enum">>, [Value]}
                       ]);
