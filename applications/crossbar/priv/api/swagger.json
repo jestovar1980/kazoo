@@ -7005,12 +7005,12 @@
                 },
                 "Presence-State": {
                     "enum": [
-                        "trying",
-                        "online",
-                        "offline",
-                        "early",
                         "confirmed",
-                        "terminated"
+                        "early",
+                        "offline",
+                        "online",
+                        "terminated",
+                        "trying"
                     ],
                     "type": "string"
                 },
@@ -7053,12 +7053,12 @@
                 },
                 "Presence-State": {
                     "enum": [
-                        "trying",
-                        "online",
-                        "offline",
-                        "early",
                         "confirmed",
-                        "terminated"
+                        "early",
+                        "offline",
+                        "online",
+                        "terminated",
+                        "trying"
                     ],
                     "type": "string"
                 },
@@ -7129,12 +7129,12 @@
                 },
                 "Presence-State": {
                     "enum": [
-                        "trying",
-                        "online",
-                        "offline",
-                        "early",
                         "confirmed",
-                        "terminated"
+                        "early",
+                        "offline",
+                        "online",
+                        "terminated",
+                        "trying"
                     ],
                     "type": "string"
                 },
@@ -7177,12 +7177,12 @@
                 },
                 "Presence-State": {
                     "enum": [
-                        "trying",
-                        "online",
-                        "offline",
-                        "early",
                         "confirmed",
-                        "terminated"
+                        "early",
+                        "offline",
+                        "online",
+                        "terminated",
+                        "trying"
                     ],
                     "type": "string"
                 },
@@ -14474,8 +14474,11 @@
                 },
                 "Action": {
                     "enum": [
+                        "hold",
                         "start",
-                        "stop"
+                        "stop",
+                        "toggle",
+                        "unhold"
                     ],
                     "type": "string"
                 },
@@ -14493,7 +14496,56 @@
                 },
                 "Application-Name": {
                     "enum": [
-                        "bridge"
+                        "answer",
+                        "audio_level",
+                        "break",
+                        "bridge",
+                        "call_pickup",
+                        "conference",
+                        "connect_leg",
+                        "eavesdrop",
+                        "echo",
+                        "event_actions",
+                        "execute_extension",
+                        "fax_detection",
+                        "fetch",
+                        "hangup",
+                        "hold",
+                        "hold_control",
+                        "media_macro",
+                        "noop",
+                        "page",
+                        "park",
+                        "play",
+                        "play_and_collect_digits",
+                        "play_macro",
+                        "playseek",
+                        "playstop",
+                        "privacy",
+                        "progress",
+                        "queue",
+                        "receive_fax",
+                        "record",
+                        "record_call",
+                        "recv_dtmf",
+                        "redirect",
+                        "respond",
+                        "ring",
+                        "say",
+                        "send_dtmf",
+                        "set",
+                        "set_terminators",
+                        "sleep",
+                        "soft_hold",
+                        "sound_touch",
+                        "store",
+                        "store_fax",
+                        "store_vm",
+                        "tone_detect",
+                        "tones",
+                        "transfer",
+                        "tts",
+                        "unbridge"
                     ],
                     "type": "string"
                 },
@@ -14586,8 +14638,8 @@
                 },
                 "Dial-Endpoint-Method": {
                     "enum": [
-                        "single",
-                        "simultaneous"
+                        "simultaneous",
+                        "single"
                     ],
                     "type": "string"
                 },
@@ -14615,8 +14667,8 @@
                 },
                 "Enable-T38-Gateway": {
                     "enum": [
-                        "self",
-                        "peer"
+                        "peer",
+                        "self"
                     ],
                     "type": "string"
                 },
@@ -14692,11 +14744,10 @@
                 },
                 "Gender": {
                     "enum": [
-                        "masculine",
                         "feminine",
+                        "masculine",
                         "neuter"
-                    ],
-                    "type": "string"
+                    ]
                 },
                 "Group-ID": {
                     "type": "string"
@@ -14727,10 +14778,10 @@
                 },
                 "Insert-At": {
                     "enum": [
-                        "head",
-                        "tail",
                         "flush",
-                        "now"
+                        "head",
+                        "now",
+                        "tail"
                     ],
                     "type": "string"
                 },
@@ -14760,9 +14811,9 @@
                 },
                 "Media": {
                     "enum": [
-                        "process",
+                        "auto",
                         "bypass",
-                        "auto"
+                        "process"
                     ],
                     "type": "string"
                 },
@@ -14770,7 +14821,7 @@
                     "type": "string"
                 },
                 "Media-Macros": {
-                    "type": "string"
+                    "type": "object"
                 },
                 "Media-Name": {
                     "type": "string"
@@ -14792,9 +14843,9 @@
                 },
                 "Media-Transfer-Method": {
                     "enum": [
-                        "stream",
+                        "post",
                         "put",
-                        "post"
+                        "stream"
                     ],
                     "type": "string"
                 },
@@ -14806,10 +14857,10 @@
                 },
                 "Method": {
                     "enum": [
-                        "none",
-                        "pronounced",
+                        "counted",
                         "iterated",
-                        "counted"
+                        "none",
+                        "pronounced"
                     ],
                     "type": "string"
                 },
@@ -14877,8 +14928,8 @@
                     "enum": [
                         "full",
                         "name",
-                        "number",
-                        "none"
+                        "none",
+                        "number"
                     ],
                     "type": "string"
                 },
@@ -14893,9 +14944,9 @@
                 },
                 "Record-Action": {
                     "enum": [
+                        "mask",
                         "start",
                         "stop",
-                        "mask",
                         "unmask"
                     ],
                     "type": "string"
@@ -14934,13 +14985,16 @@
                     "type": "string"
                 },
                 "SIP-Invite-Parameters": {
+                    "items": {
+                        "type": "string"
+                    },
                     "type": "string"
                 },
                 "SIP-Transport": {
                     "enum": [
-                        "udp",
                         "tcp",
-                        "tls"
+                        "tls",
+                        "udp"
                     ],
                     "type": "string"
                 },
@@ -15015,7 +15069,8 @@
                 },
                 "Tones": {
                     "items": {
-                        "$ref": "#/definitions/kapi.dialplan.tones_req_tone_headers"
+                        "$ref": "#/definitions/kapi.dialplan.tones_req_tone_headers",
+                        "type": "string"
                     },
                     "type": "array"
                 },
@@ -15034,8 +15089,8 @@
                 },
                 "Transfer-Type": {
                     "enum": [
-                        "blind",
-                        "attended"
+                        "attended",
+                        "blind"
                     ],
                     "type": "string"
                 },
@@ -15074,132 +15129,28 @@
                 },
                 "Voice": {
                     "enum": [
-                        "male",
-                        "female"
+                        "female",
+                        "male"
                     ],
                     "type": "string"
                 }
             },
             "required": [
                 "Action",
-                "Action",
-                "Action",
-                "Action",
                 "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Application-Name",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
-                "Call-ID",
                 "Call-ID",
                 "Commands",
                 "Conference-ID",
                 "Custom-Call-Vars",
                 "Custom-Channel-Vars",
                 "DTMFs",
-                "DTMFs",
                 "Digits-Regex",
                 "Direction",
                 "Duration",
                 "Endpoints",
-                "Endpoints",
                 "Event-Actions",
                 "Extension",
                 "Frequencies",
-                "Insert-At",
                 "Insert-At",
                 "Language",
                 "Level",
@@ -15207,15 +15158,7 @@
                 "Media-Macro",
                 "Media-Macros",
                 "Media-Name",
-                "Media-Name",
-                "Media-Name",
-                "Media-Name",
-                "Media-Name",
                 "Media-Transfer-Destination",
-                "Media-Transfer-Destination",
-                "Media-Transfer-Destination",
-                "Media-Transfer-Method",
-                "Media-Transfer-Method",
                 "Media-Transfer-Method",
                 "Media-Tries",
                 "Method",
@@ -15226,9 +15169,6 @@
                 "Response-Code",
                 "Say-Text",
                 "Target-Call-ID",
-                "Target-Call-ID",
-                "Target-Call-ID",
-                "Terminators",
                 "Terminators",
                 "Text",
                 "Time",
