@@ -34,8 +34,6 @@
 
 -define(MOD_CONFIG_CAT, <<(?CONFIG_CAT)/binary, ".users">>).
 
--define(LIST_BY_HOTDESK_ID, <<"users/list_by_hotdesk_id">>).
-
 -define(VCARD, <<"vcard">>).
 -define(PHOTO, <<"photo">>).
 
@@ -594,13 +592,13 @@ check_username(UserId, Context) ->
 
 -spec is_username_unique(kz_term:api_binary(), kz_term:api_binary(), kz_term:ne_binary()) -> boolean().
 is_username_unique(AccountDb, UserId, UserName) ->
-    ViewOptions = [{'key', UserName}],
-    case kz_datamgr:get_results(AccountDb, ?LIST_BY_USERNAME, ViewOptions) of
+    ViewOptions = [{'key', [kzd_users:type(), <<"by_username">>, UserName]}],
+    case kz_datamgr:get_results(AccountDb, ?KZ_VIEW_LIST_UNIFORM, ViewOptions) of
         {'ok', []} -> 'true';
         {'ok', [JObj|_]} -> kz_doc:id(JObj) =:= UserId;
         {'error', _R} ->
-            lager:error("error checking view ~p in ~p: ~p"
-                       ,[?LIST_BY_USERNAME, AccountDb, _R]
+            lager:error("failed to check username uniqueness for user '~p' in account '~p': ~p"
+                       ,[UserId, AccountDb, _R]
                        ),
             'false'
     end.
@@ -643,13 +641,13 @@ check_hotdesk_id(UserId, Context) ->
 
 -spec is_hotdesk_id_unique(kz_term:api_binary(), kz_term:api_binary(), kz_term:ne_binary()) -> boolean().
 is_hotdesk_id_unique(AccountDb, UserId, HotdeskId) ->
-    ViewOptions = [{'key', HotdeskId}],
-    case kz_datamgr:get_results(AccountDb, ?LIST_BY_HOTDESK_ID, ViewOptions) of
+    ViewOptions = [{'key', [kzd_users:type(), <<"by_hotdesk_id">>, HotdeskId]}],
+    case kz_datamgr:get_results(AccountDb, ?KZ_VIEW_LIST_UNIFORM, ViewOptions) of
         {'ok', []} -> 'true';
         {'ok', [JObj|_]} -> kz_doc:id(JObj) =:= UserId;
         {'error', _R} ->
-            lager:error("error checking view ~p in ~p: ~p"
-                       ,[?LIST_BY_HOTDESK_ID, AccountDb, _R]
+            lager:error("failed to check hotdesk id uniqueness for user '~s' in account '~p': ~p"
+                       ,[UserId, AccountDb, _R]
                        ),
             'false'
     end.
